@@ -50,7 +50,8 @@
                 isProcessingData: false,
                 isResizing: false,
                 isPause: false,
-                curPage: 1 // cur page
+                curPage: 1, // cur page
+                curKey: ''
             },
 
             // callbacks
@@ -443,6 +444,7 @@
                 options = this.options,
                 maxPage = options.maxPage,
                 curPage = options.state.curPage++, // cur page
+                curKey = options.state.curKey, // cur Key
                 path = options.path,
                 dataType = options.dataType,
                 params = options.params,
@@ -457,7 +459,7 @@
             }
 
             // get ajax url
-            pageurl = (typeof path === 'function') ? path(curPage) : path.join(curPage);
+            pageurl = (typeof path === 'function') ? path(curPage, curKey) : path.join(curPage);
 
             this._debug('heading into ajax', pageurl+$.param(params));
 
